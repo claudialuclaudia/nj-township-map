@@ -2,149 +2,53 @@ import './App.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function Square(props) {
-  return (
-    <button className="square" onClick={props.onClick}>
-      {props.value}
-    </button>
-  );
-}
-
-class Board extends React.Component {
-  renderSquare(i) {
-    return (
-      <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-      />
-    );
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
-    );
-  }
-}
-
-class Game extends React.Component {
+class NJMap extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      history: [
-        {
-          squares: Array(9).fill(null)
-        }
-      ],
-      stepNumber: 0,
-      xIsNext: true
-    };
   }
-
-  handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext ? "X" : "O";
-    this.setState({
-      history: history.concat([
-        {
-          squares: squares
-        }
-      ]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext
-    });
-  }
-
-  jumpTo(step) {
-    this.setState({
-      stepNumber: step,
-      xIsNext: (step % 2) === 0
-    });
-  }
-
+  
   render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
-
-    const moves = history.map((step, move) => {
-      const desc = move ?
-        'Go to move #' + move :
-        'Go to game start';
-      return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
-        </li>
-      );
-    });
-
-    let status;
-    if (winner) {
-      status = "Winner: " + winner;
-    } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
-    }
+    // const image = {
+    //   url: 'url',
+    //   height: '1200px',
+    //   width: '700px',
+    // }
 
     return (
-      <div className="game">
-        <div className="game-board">
-          <Board
-            squares={current.squares}
-            onClick={i => this.handleClick(i)}
-          />
+      <nav className="map">
+        <div className="container">
+        <map name="primary">
+          <area shape="circle" alt="newton" coords="309,140,5" href="https://www.google.com/search?q=newton&oq=newton&aqs=chrome..69i64j69i57.4517j0j4&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="paterson" coords="473,189,5" href="https://www.google.com/search?q=paterson&oq=paterson&aqs=chrome..69i64j69i57.2324j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="hackensack" coords="510,199,5" href="https://www.google.com/search?q=hackensack&oq=hackensack&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="belvidere" coords="219,218,5" href="https://www.google.com/search?q=belvidere&oq=belvidere&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="morristown" coords="386,230,5" href="https://www.google.com/search?q=morristown&oq=morristown&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="newark" coords="473,250,5" href="https://www.google.com/search?q=newark&oq=newark&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="elizabeth" coords="459,272,5" href="https://www.google.com/search?q=elizabeth&oq=elizabeth&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="jerseycity" coords="501,252,5" href="https://www.google.com/search?q=jerseycity&oq=jerseycity&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="flemington" coords="280,526,5" href="https://www.google.com/search?q=flemington&oq=flemington&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="somerville" coords="349,503,5" href="https://www.google.com/search?q=somerville&oq=somerville&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="newbrunswick" coords="394,535,5" href="https://www.google.com/search?q=newbrunswick&oq=newbrunswick&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="trenton" coords="313,424,5" href="https://www.google.com/search?q=trenton&oq=trenton&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="freehold" coords="444,410,5" href="https://www.google.com/search?q=freehold&oq=freehold&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="mountholly" coords="299,500,5" href="https://www.google.com/search?q=mountholly&oq=mountholly&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="tomsriver" coords="465,514,5" href="https://www.google.com/search?q=tomsriver&oq=tomsriver&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="camden" coords="207,522,5" href="https://www.google.com/search?q=camden&oq=camden&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="woodbury" coords="197,551,5" href="https://www.google.com/search?q=woodbury&oq=woodbury&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="salem" coords="108,643,5" href="https://www.google.com/search?q=salem&oq=salem&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="maryslanding" coords="315,682,5" href="https://www.google.com/search?q=maryslanding&oq=maryslanding&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="bridgeton" coords="173,691,5" href="https://www.google.com/search?q=bridgeton&oq=bridgeton&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+          <area shape="circle" alt="capemay" coords="288,808,5" href="https://www.google.com/search?q=capemay&oq=capemay&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
+
+
+
+        </map>
+      <img usemap="#primary" src="https://www.worldatlas.com/r/w1200/upload/c0/78/96/new-jersey-counties-map.png" height='937px' width='660px'></img>
+
         </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
-        </div>
-      </div>
+      </nav>
     );
   }
 }
 
-// ========================================
-
-// ReactDOM.render(<Game />, document.getElementById("root"));
-
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}
-
-export default Game;
+export default NJMap;
