@@ -8,12 +8,6 @@ class NJMap extends React.Component {
   }
   
   render() {
-    // const image = {
-    //   url: 'url',
-    //   height: '1200px',
-    //   width: '700px',
-    // }
-
     return (
       <nav className="map">
         <div className="container">
