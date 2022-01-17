@@ -30,13 +30,17 @@ app.get("/", (req, res) => {
       res.send(data);
     })
     .catch((err) => {
-      console.log("");
+      console.log("error in get /");
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving tutorials.",
       });
     });
   //res.send("Hello World!");
+});
+
+app.get("/api", (req, res) => {
+  res.json({ message: "Hello from server!" });
 });
 
 app.listen(port, () => {

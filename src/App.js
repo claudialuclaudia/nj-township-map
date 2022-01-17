@@ -1,13 +1,11 @@
 import './App.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
-
 class NJMap extends React.Component {
   constructor(props) {
     super(props);
   }
   
-  render() {
+  render() { 
     return (
       <nav className="map">
         <div className="container">
@@ -33,8 +31,6 @@ class NJMap extends React.Component {
           <area shape="circle" alt="maryslanding" coords="315,682,5" href="https://www.google.com/search?q=maryslanding&oq=maryslanding&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
           <area shape="circle" alt="bridgeton" coords="173,691,5" href="https://www.google.com/search?q=bridgeton&oq=bridgeton&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
           <area shape="circle" alt="capemay" coords="288,808,5" href="https://www.google.com/search?q=capemay&oq=capemay&aqs=chrome..69i64j69i57.2310j0j3&sourceid=chrome&ie=UTF-8"></area>
-
-
 
         </map>
       <img usemap="#primary" src="https://www.worldatlas.com/r/w1200/upload/c0/78/96/new-jersey-counties-map.png" height='937px' width='660px'></img>
