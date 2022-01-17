@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import NJMap from './App';
-import reportWebVitals from './reportWebVitals';
+import App2 from './App2';
 
 ReactDOM.render(
   <React.StrictMode>
+    <App2 />
     <NJMap />
   </React.StrictMode>,
   document.getElementById('root')
