@@ -1,5 +1,7 @@
 import './App.css';
 import React from 'react';
+import * as data from "./nj.json";
+import * as topojson from 'topojson';
 import * as d3 from 'd3';
 
 class NJMap extends React.Component {
@@ -10,26 +12,27 @@ class NJMap extends React.Component {
   }
 
   componentDidMount() {
-    // console.log(this.myRef);
-    // d3.select(this.myRef.current)
-    //   .append("p")
-    //   .text("Hello from D3");
-    let size = 500;
-    let svg = d3.select(this.myRef.current)
-      .append('svg')
-      .attr('width', size)
-      .attr('height', size);
 
-    let rect_width = 95;
-    svg.selectAll("rect")
-      .data(this.dataset)
+    var canvas = d3.select(this.myRef.current).append("svg")
+      .attr("width", 500)
+      .attr("height", 500);
+
+    canvas.selectAll("rect")
+      .data(data)
       .enter()
       .append("rect")
-      .attr('x', (d, i) => 5 + i * (rect_width + 5))
-      .attr('y', d => size - d)
-      .attr("width", rect_width)
-      .attr("height", d => d)
-      .attr('fill', "teal");
+      .attr("width", function (d) { return d.age * 10; })
+      .attr("height", 48)
+      .attr("y", function (d, i) { return i * 50; })
+      .attr("fill", "blue");
+
+    canvas.selectAll("text")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("fill", "white")
+      .attr("y", function (d, i) { return i * 50; })
+      .text(function (d) { return d.name; })
   }
 
   render() {
