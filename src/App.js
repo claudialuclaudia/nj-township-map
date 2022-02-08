@@ -1,7 +1,6 @@
 import './App.css';
 import React from 'react';
-import * as data from "./nj.json";
-import * as topojson from 'topojson';
+import data from "./nj.json";
 import * as d3 from 'd3';
 
 class NJMap extends React.Component {
@@ -12,27 +11,49 @@ class NJMap extends React.Component {
   }
 
   componentDidMount() {
-
     var canvas = d3.select(this.myRef.current).append("svg")
-      .attr("width", 500)
-      .attr("height", 500);
+      .attr("width", 1015)
+      .attr("height", 1300);
 
-    canvas.selectAll("rect")
-      .data(data)
+    var group = canvas.selectAll("g")
+      .data(data.features)
       .enter()
-      .append("rect")
-      .attr("width", function (d) { return d.age * 10; })
-      .attr("height", 48)
-      .attr("y", function (d, i) { return i * 50; })
-      .attr("fill", "blue");
+      .append("g");
 
-    canvas.selectAll("text")
-      .data(data)
-      .enter()
-      .append("text")
-      .attr("fill", "white")
-      .attr("y", function (d, i) { return i * 50; })
-      .text(function (d) { return d.name; })
+    var projection = d3.geoMercator()
+      .center([-75, 41])
+      .scale(20000);
+    var path = d3.geoPath().projection(projection);
+
+    var areas = group.append("path")
+      .attr("d", path)
+      .attr("class", "area")
+      .attr("fill", "steelblue");
+
+    group.append("text")
+      .attr("x", function (data) {return path.centroid(data)[0]; })
+      .attr("y", function (data) {return path.centroid(data)[1]; })
+      .attr("text-anchor", "middle")
+      .text(function (data) {return data.properties.county; });
+
+    // canvas.selectAll("rect")
+    //   .data(data)
+    //   .enter()
+    //   .append("rect")
+    //   .attr("width", function (d) { return d.age * 10; })
+    //   .attr("height", 48)
+    //   .attr("y", function (d, i) { return i * 50; })
+    //   .attr("fill", "blue");
+
+    // canvas.selectAll("text")
+    //   .data(data)
+    //   .enter()
+    //   .append("text")
+    //   .attr("fill", "white")
+    //   .attr("y", function (d, i) { return i * 50; })
+    //   .text(function (d) { return d.name; })
+
+
   }
 
   render() {
