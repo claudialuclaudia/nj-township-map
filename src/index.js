@@ -6,7 +6,7 @@ import App2 from './App2';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App2 />
+    {/* <App2 /> */}
     <NJMap />
   </React.StrictMode>,
   document.getElementById('root')
